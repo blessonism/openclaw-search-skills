@@ -62,7 +62,7 @@ mkdir -p ~/.openclaw/workspace/skills
 cd ~/.openclaw/workspace/skills
 
 # 先 clone 仓库
-# git clone https://github.com/blessonism/openclaw-skills.git /path/to/openclaw-skills
+# git clone https://github.com/blessonism/openclaw-search-skills.git /path/to/openclaw-skills
 
 ln -s /path/to/openclaw-skills/github-explorer github-explorer
 ln -s /path/to/openclaw-skills/search-layer search-layer

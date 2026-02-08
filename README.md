@@ -31,7 +31,7 @@ github-explorer (the brain)
 
 ```bash
 mkdir -p ~/.openclaw/workspace/_repos
-git clone https://github.com/blessonism/openclaw-skills.git ~/.openclaw/workspace/_repos/openclaw-skills
+git clone https://github.com/blessonism/openclaw-search-skills.git ~/.openclaw/workspace/_repos/openclaw-skills
 
 mkdir -p ~/.openclaw/workspace/skills
 cd ~/.openclaw/workspace/skills
