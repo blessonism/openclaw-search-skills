@@ -55,6 +55,7 @@ ln -s ~/.openclaw/workspace/_repos/openclaw-search-skills/mineru-extract mineru-
 **环境变量：**
 
 ```bash
+export BRAVE_API_KEY="your-brave-key"    # https://brave.com/search/api/ （OpenClaw 内置 web_search 使用）
 export EXA_API_KEY="your-exa-key"        # https://exa.ai
 export TAVILY_API_KEY="your-tavily-key"  # https://tavily.com
 ```
@@ -63,6 +64,7 @@ export TAVILY_API_KEY="your-tavily-key"  # https://tavily.com
 
 ```markdown
 ### Search
+- **Brave**: `your-brave-key`
 - **Exa**: `your-exa-key`
 - **Tavily**: `your-tavily-key`
 ```
