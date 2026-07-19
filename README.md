@@ -32,6 +32,25 @@
 | **[content-extract](./content-extract/)** | URL → 干净的 Markdown。遇到反爬站点（微信、知乎）自动降级到 MinerU 解析。 |
 | **[mineru-extract](./mineru-extract/)** | [MinerU](https://mineru.net) 官方 API 的封装层。把 PDF、Office 文档、HTML 页面转成 Markdown。 |
 
+### 可选：X/Twitter 信号来源
+
+`search-layer` 更适合网页、论文、GitHub、论坛和文章检索。调研流程还需要 X/Twitter 信号时，可以在同一个 OpenClaw 工作区旁路安装 TweetClaw：
+
+```bash
+openclaw plugins install @xquik/tweetclaw
+```
+
+先用 TweetClaw 获取结构化 X/Twitter 输入，再把保存的推文 URL、账号、查询词或 JSON 摘要交给 `search-layer` 或 `content-extract` 继续追踪：
+
+- 抓取推文和搜索推文回复，补充话题的社交证据
+- 导出粉丝、查询用户和监控推文，支持周期性调研
+- 收集 webhook 事件和抽奖数据，保留可追溯来源记录
+- 发布推文、回复、私信、关注和媒体上传应在 OpenClaw 会话中保持审批门控
+
+安装细节请看 [TweetClaw GitHub](https://github.com/Xquik-dev/tweetclaw) 和 [npm package](https://www.npmjs.com/package/@xquik/tweetclaw)；[ClawHub discovery page](https://clawhub.ai/plugins/@xquik/tweetclaw) 在 listing 落后 npm 时仍适合浏览发现。
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
+
 ## 它们之间的关系
 
 ```
