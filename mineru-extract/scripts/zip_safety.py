@@ -1,9 +1,12 @@
+"""Validate ZIP members before extraction."""
+
 import pathlib
 import stat
 import zipfile
 
 
 def extract_zip_safely(archive: zipfile.ZipFile, out_dir: pathlib.Path) -> None:
+    """Extract an archive after rejecting paths outside the output directory."""
     root = out_dir.resolve()
     for member in archive.infolist():
         target = (root / member.filename).resolve()

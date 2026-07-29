@@ -162,6 +162,7 @@ def poll_task(*, api_base: str, token: str, task_id: str, timeout_sec: int = 600
 
 
 def extract_markdown_from_zip(zip_bytes: bytes, out_dir: pathlib.Path) -> tuple[pathlib.Path | None, list[pathlib.Path]]:
+    """Extract an archive and return its primary Markdown file and all files."""
     out_dir.mkdir(parents=True, exist_ok=True)
     extracted: list[pathlib.Path] = []
     with zipfile.ZipFile(io.BytesIO(zip_bytes)) as z:

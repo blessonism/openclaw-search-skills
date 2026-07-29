@@ -1,3 +1,5 @@
+"""Regression tests for safe MinerU archive extraction."""
+
 import importlib.util
 import io
 import pathlib
@@ -14,6 +16,7 @@ sys.path.insert(0, str(SCRIPTS))
 
 
 def load_module(name: str, relative_path: str):
+    """Load a repository script as a module for focused testing."""
     spec = importlib.util.spec_from_file_location(name, ROOT / relative_path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -29,6 +32,7 @@ MINERU_PARSE = load_module(
 
 
 def build_zip(name: str, content: str = "content") -> bytes:
+    """Build an in-memory ZIP containing one regular file."""
     payload = io.BytesIO()
     with zipfile.ZipFile(payload, "w") as archive:
         archive.writestr(name, content)
@@ -36,6 +40,7 @@ def build_zip(name: str, content: str = "content") -> bytes:
 
 
 def build_symlink_zip(name: str, target: str) -> bytes:
+    """Build an in-memory ZIP containing one symbolic-link entry."""
     payload = io.BytesIO()
     member = zipfile.ZipInfo(name)
     member.create_system = 3
@@ -46,7 +51,10 @@ def build_symlink_zip(name: str, target: str) -> bytes:
 
 
 class MinerUZipSafetyTests(unittest.TestCase):
+    """Protect both MinerU archive extraction paths."""
+
     def test_low_level_extractor_rejects_parent_traversal(self):
+        """Reject parent traversal through the low-level extractor."""
         with tempfile.TemporaryDirectory() as temp_dir:
             with self.assertRaisesRegex(ValueError, "Unsafe archive path"):
                 MINERU_EXTRACT.extract_markdown_from_zip(
@@ -54,6 +62,7 @@ class MinerUZipSafetyTests(unittest.TestCase):
                 )
 
     def test_wrapper_rejects_parent_traversal(self):
+        """Reject parent traversal through the multi-document wrapper."""
         with tempfile.TemporaryDirectory() as temp_dir:
             with self.assertRaisesRegex(ValueError, "Unsafe archive path"):
                 MINERU_PARSE.extract_main_markdown(
@@ -61,6 +70,7 @@ class MinerUZipSafetyTests(unittest.TestCase):
                 )
 
     def test_valid_markdown_archives_still_extract(self):
+        """Preserve extraction of valid nested Markdown files."""
         with tempfile.TemporaryDirectory() as temp_dir:
             markdown_path, extracted = MINERU_EXTRACT.extract_markdown_from_zip(
                 build_zip("document/main.md", "# Safe"), pathlib.Path(temp_dir)
@@ -70,6 +80,7 @@ class MinerUZipSafetyTests(unittest.TestCase):
             self.assertEqual(len(extracted), 1)
 
     def test_rejects_symbolic_links(self):
+        """Reject symbolic-link members before extraction."""
         with tempfile.TemporaryDirectory() as temp_dir:
             with self.assertRaisesRegex(ValueError, "Archive links are not supported"):
                 MINERU_EXTRACT.extract_markdown_from_zip(

@@ -176,6 +176,7 @@ def poll_task(*, api_base: str, token: str, task_id: str, timeout_sec: int, poll
 
 
 def extract_main_markdown(zip_bytes: bytes, out_dir: pathlib.Path) -> pathlib.Path | None:
+    """Extract an archive and return its highest-ranked Markdown file."""
     out_dir.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(io.BytesIO(zip_bytes)) as z:
         extract_zip_safely(z, out_dir)
