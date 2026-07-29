@@ -40,7 +40,7 @@
 openclaw plugins install @xquik/tweetclaw
 ```
 
-先用 TweetClaw 获取结构化 X/Twitter 输入，再把保存的推文 URL、账号、查询词或 JSON 摘要交给 `search-layer` 或 `content-extract` 继续追踪：
+先用 TweetClaw 获取结构化 X/Twitter 输入。把保存的推文 URL 交给 `content-extract`；按 `search-layer` 支持的输入格式，把账号、查询词或 JSON 摘要交给 `search-layer`：
 
 - 抓取推文和搜索推文回复，补充话题的社交证据
 - 导出粉丝、查询用户和监控推文，支持周期性调研

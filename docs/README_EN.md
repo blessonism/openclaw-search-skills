@@ -57,7 +57,7 @@ OpenClaw Agent
 openclaw plugins install @xquik/tweetclaw
 ```
 
-Use TweetClaw for structured X/Twitter inputs, then pass the saved tweet URLs, handles, query terms, or JSON summaries into `search-layer` or `content-extract`:
+Use TweetClaw for structured X/Twitter inputs. Pass saved tweet URLs to `content-extract`; use handles, query terms, or JSON summaries with `search-layer` according to its supported input format:
 
 - scrape tweets and search tweet replies for social evidence around a topic
 - export followers, look up users, and monitor tweets for recurring research
