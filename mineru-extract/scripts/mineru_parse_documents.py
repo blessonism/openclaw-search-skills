@@ -33,6 +33,8 @@ import urllib.error
 import urllib.request
 import zipfile
 
+from zip_safety import extract_zip_safely
+
 
 def _default_workspace() -> pathlib.Path:
     """Return workspace root, preferring env override."""
@@ -174,9 +176,10 @@ def poll_task(*, api_base: str, token: str, task_id: str, timeout_sec: int, poll
 
 
 def extract_main_markdown(zip_bytes: bytes, out_dir: pathlib.Path) -> pathlib.Path | None:
+    """Extract an archive and return its highest-ranked Markdown file."""
     out_dir.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(io.BytesIO(zip_bytes)) as z:
-        z.extractall(out_dir)
+        extract_zip_safely(z, out_dir)
 
     md_files = [p for p in out_dir.rglob("*") if p.is_file() and p.suffix.lower() in (".md", ".markdown")]
     if not md_files:

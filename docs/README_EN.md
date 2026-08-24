@@ -49,6 +49,25 @@ OpenClaw Agent
 | **[content-extract](../content-extract/)** | URL → clean Markdown. Automatically falls back to MinerU for anti-bot sites such as WeChat and Zhihu. |
 | **[mineru-extract](../mineru-extract/)** | A wrapper around the official [MinerU](https://mineru.net) API for converting PDFs, Office files, and HTML pages into Markdown. |
 
+### Optional X/Twitter source handoff
+
+`search-layer` is strongest for web, academic, GitHub, forum, and article retrieval. When a research workflow also needs X/Twitter signals, install TweetClaw beside these skills:
+
+```bash
+openclaw plugins install @xquik/tweetclaw
+```
+
+Use TweetClaw for structured X/Twitter inputs. Pass saved tweet URLs to `content-extract`; use handles, query terms, or JSON summaries with `search-layer` according to its supported input format:
+
+- scrape tweets and search tweet replies for social evidence around a topic
+- export followers, look up users, and monitor tweets for recurring research
+- collect webhook events and giveaway draw data as traceable source records
+- keep posting, replies, DMs, follows, and media uploads approval-gated in the OpenClaw session
+
+Setup details: use [TweetClaw GitHub](https://github.com/Xquik-dev/tweetclaw) and the [npm package](https://www.npmjs.com/package/@xquik/tweetclaw); the [ClawHub discovery page](https://clawhub.ai/plugins/@xquik/tweetclaw) remains useful for browsing while that listing lags behind npm.
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
+
 ### How they relate
 
 ```text
