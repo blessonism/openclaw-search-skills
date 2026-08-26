@@ -479,7 +479,7 @@ def search_grok(query: str, api_url: str, api_key: str, model: str = "grok-4.1-f
                 try:
                     decoder = json.JSONDecoder()
                     parsed_obj, end_idx = decoder.raw_decode(content, start_idx)
-                    content = content[start_idx:start_idx + end_idx]
+                    content = content[start_idx:end_idx]
                 except json.JSONDecodeError:
                     # Fallback: take from first { to last }
                     last_brace = content.rfind("}")
